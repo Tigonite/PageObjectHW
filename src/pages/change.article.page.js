@@ -1,9 +1,9 @@
-export class CreateArticlePage{
+export class ChangeArticlePage{
     constructor(page){
-        this.articleTextbox = page.getByRole('textbox', { name: 'Article Title' });
+        this.articleTextbox = page.getByRole('textbox', { name: 'Article Title' })
         this.announceTextbox = page.getByRole('textbox', { name: 'What\'s this article about?' });
         this.contentTextbox = page.getByRole('textbox', { name: 'Write your article (in' });
-        this.publishButton = page.getByRole('button', { name: 'Publish Article' });
+        this.changeArticleButton = page.getByRole('button', { name: 'Update Article' });
     }
 
     async activateArticleTextbox(){
@@ -24,7 +24,7 @@ export class CreateArticlePage{
     async fillContentTextbox(){
         this.contentTextbox.fill();
     };
-    async pushPublishButton(){
-        this.publishButton.click();
+    async pushChangeArticleButton(){
+        this.changeArticleButton.click();
     };
 }
