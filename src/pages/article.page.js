@@ -6,19 +6,16 @@ export class ArticlePage{
         this.deleteButton = page.getByRole('button', { name: 'Delete Article' }).nth(1);
     };
 
-async editArticle(){
-        this.articleEditLink.click();
+    async startEditArticle(){
+        await this.articleEditLink.click();
     };
-async activateCommentTextbox(){
-        this.commentTextbox.click();
+    async writeComment(){
+        await this.commentTextbox.click();
+        await this.commentTextbox.fill();
+        await this.postButton.click();
     };
-async writeComment(){
-        this.commentTextbox.fill();
+
+    async pushDeleteButton(){
+        await this.deleteButton.click();
     };
-async pushPostButton(){
-        this.postButton.click();
-};
-async pushDeleteButton(){
-        this.deleteButton.click();
-};
 }

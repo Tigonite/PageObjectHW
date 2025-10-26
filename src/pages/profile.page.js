@@ -1,14 +1,21 @@
 export class ProfilePage {
     constructor(page){
+        this.profileName = page.locator('div.nav-link.dropdown-toggle.cursor-pointer');
         this.newArticleLink = page.getByRole('link', { name: 'New Article' });
         this.globalFeedButton = page.getByRole('button', { name: 'Global Feed' });
+        this.logoutLink = page.getByRole('link', { name: 'Logout' });
     }
 
     async gotoArticleLink(){
-        this.newArticleLink.click();
+        await this.newArticleLink.click();
     };
     async pushGlobalFeedButton(){
-        this.globalFeedButton.click();
+        await this.globalFeedButton.click();
     };
-    
+    async clickProfileName(){
+        await this.profileName.click();
+    };
+    async clickLogoutLink(){
+        await this.logoutLink.click();
+    };
 }
