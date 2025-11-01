@@ -1,21 +1,24 @@
-export class ArticlePage{
-    constructor(page){
-        this.articleEditLink = page.getByRole('link', { name: 'Edit Article' }).nth(1);
-        this.commentTextbox = page.getByRole('textbox', { name: 'Write a comment...' });
-        this.postButton = page.getByRole('button', { name: 'Post Comment' });
-        this.deleteButton = page.getByRole('button', { name: 'Delete Article' }).nth(1);
-    };
+export class ArticlePage {
+    constructor(page) {
+        this.articleTitle = page.getByRole('textbox', { name: 'Article Title' });
+        this.articleAbout = page.getByRole('textbox', { name: 'What\'s this article about?' });
+        this.articleContent = page.getByRole('textbox', { name: 'Write your article (in markdown)' });
+        this.publishButton = page.getByRole('button', { name: 'Publish Article' });
+        this.articleHeading = page.getByRole('main');
+    }
 
-    async startEditArticle(){
-        await this.articleEditLink.click();
-    };
-    async writeComment(){
-        await this.commentTextbox.click();
-        await this.commentTextbox.fill();
-        await this.postButton.click();
-    };
+    async fillArticleForm(article) {
+        const {title, about, content} = article;
+        await this.articleTitle.click();
+        await this.articleTitle.fill(title);
+        await this.articleAbout.click();
+        await this.articleAbout.fill(about);
+        await this.articleContent.click();
+        await this.articleContent.fill(content);
+        await this.publishButton.click();
+    }
 
-    async pushDeleteButton(){
-        await this.deleteButton.click();
-    };
+    async clickPublishButton() {
+        await this.publishButton.click();
+    }
 }

@@ -1,19 +1,32 @@
 export class MainPage{
-  constructor(page){
-    this.signUp = page.getByRole('link', { name: 'Sign up' });
-    this.loginLink = page.getByRole('link', { name: 'Login' });
-    this.heading = page.getByRole('heading', { name: 'conduit' });  
-  };
+    constructor(page) {
+        this.signupLink = page.getByRole('link', { name: 'Sign up' });
+        this.profileNameDropdown = page.locator('div.nav-link.dropdown-toggle.cursor-pointer');
+        this.logoutLink = page.getByRole('link', { name: 'Logout' });
+        this.newArticleLink = page.getByRole('link', { name: 'New Article' });
+        this.globalFeedLink = page.getByRole('button', { name: 'Global Feed' });
+        this.likeIcon = page.getByRole('button', { name: '( 1 )' }).first();
+        this.likePlusOne = page.getByRole('button', { name: '( 2 )' }).first();
+    }
 
-    async gotoSignUp() {
-      await this.signUp.click();
-    };
-     
-    async gotoLogin() {
-      await this.loginLink.click();
-    };
+    async gotoRegisterForm() {
+        await this.signupLink.click();
+    }
 
-    async gotoProfileName() {
-      await this.profileName.click();
-    };
+    async gotoNewArticleForm() {
+        await this.newArticleLink.click();
+    }
+
+    async gotoGlobalFeed() {
+        await this.globalFeedLink.click();
+    }
+
+    async clickLikeIcon() {
+        await this.likeIcon.click();
+    }
+
+    async logout() {
+        await this.profileNameDropdown.click();
+        await this.logoutLink.click();
+    }
 }
