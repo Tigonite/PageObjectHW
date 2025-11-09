@@ -22,13 +22,6 @@ test.describe('Тесты для сайта realworld.qa', () => {
             password: faker.internet.password(),
         };
         
-        /*const article = {
-            title: faker.book.title(),
-            about: faker.commerce.productName(),
-            content: faker.commerce.productDescription(),
-            tag: faker.word.noun(),
-        };*/
-        
         const article = {
             title: nanoid(10),
             about: nanoid(15),
@@ -53,13 +46,6 @@ test.describe('Тесты для сайта realworld.qa', () => {
             email: faker.internet.email(),
             password: faker.internet.password(),
         };
-        
-        /*const article = {
-            title: faker.book.title(),
-            about: faker.commerce.productName(),
-            content: faker.commerce.productDescription(),
-            tag: faker.word.noun(),
-        };*/
 
         const article = {
             title: nanoid(10),
