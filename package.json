@@ -1,0 +1,26 @@
+{
+  "name": "pageobjecthw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tigonite/PageObjectHW.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tigonite/PageObjectHW/issues"
+  },
+  "homepage": "https://github.com/Tigonite/PageObjectHW#readme",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.7.0"
+  },
+  "dependencies": {
+    "nanoid": "^5.1.6"
+  }
+}
