@@ -3,10 +3,11 @@ export class MainPage {
 	constructor(page) {
 		this.signupLink = page.getByRole('link', { name: 'Sign up' });
 		this.loginLink = page.getByRole('link', { name: 'Login' });
-		this.userDropdown = page.locator('div.nav-link.dropdown-toggle.cursor-pointer');
+		this.homeLink = page.getByRole('link', { name: 'Home' });
+        this.userDropdown = page.locator('div.nav-link.dropdown-toggle.cursor-pointer');
         this.logoutLink = page.getByRole('link', { name: 'Logout' });
 		this.globalFeed = page.getByRole('button', { name: 'Global Feed' });
-        this.like = page.getByRole('button', { name: '0' }).first();
+        this.like = page.getByRole('button', { name: '( 0 )' }).first();
         this.checkLike = page.locator('button:has-text("( 1 )")').first();
         this.advLink = page.getByRole('button', { name: 'реклама' });
         this.tag = page.locator(
@@ -20,6 +21,10 @@ export class MainPage {
 	async logout() {
         await this.userDropdown.click();
         await this.logoutLink.click();
+    }
+
+    async goHome() {
+        await this.homeLink.click();
     }
 
 	async likeArticle() {   

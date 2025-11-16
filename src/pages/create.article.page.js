@@ -1,4 +1,4 @@
-export class ArticlePage {
+export class CreateArticlePage {
     constructor(page) {
         this.newArticleLink = page.getByRole('link', { name: 'New Article' });
         this.titleInput = page.getByRole('textbox', { 
@@ -11,10 +11,6 @@ export class ArticlePage {
             name: 'Enter tags' });
         this.publishButton = page.getByRole('button', { 
             name: 'Publish Article' });
-        this.updateButton = page.getByRole('button', { 
-            name: 'Update Article' });
-        this.editArticleButton = page.getByRole('button', { 
-            name: 'Edit Article' }).nth(1);
         this.checkArticle = page.getByRole('main');
     }
 
@@ -33,7 +29,7 @@ export class ArticlePage {
         await this.publishButton.click();
     }
 
-    async editCreated(articleEdit) {    
+    /*async editCreated(articleEdit) {    
         const { title } = articleEdit;
         
         await this.editArticleButton.click();
@@ -41,5 +37,5 @@ export class ArticlePage {
         await this.titleInput.fill('');
         await this.titleInput.fill(title);
         await this.updateButton.click();
-    }
+    }*/
 }

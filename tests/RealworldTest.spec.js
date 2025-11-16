@@ -4,7 +4,8 @@ import { nanoid } from 'nanoid';
 import {
     MainPage,
     RegisterPage,
-    ArticlePage,
+    CreateArticlePage,
+    EditArticlePage
 } from '../src/pages/index';
 
 const URL = 'https://realworld.qa.guru/';
@@ -31,7 +32,7 @@ test.describe('Тесты для сайта realworld.qa', () => {
 
         const mainPage = new MainPage(page);
         const registerPage = new RegisterPage(page);
-        const articlePage = new ArticlePage(page);
+        const articlePage = new CreateArticlePage(page);
 
         await mainPage.gotoRegister();
         await registerPage.registerUser(user);
@@ -63,14 +64,16 @@ test.describe('Тесты для сайта realworld.qa', () => {
         
         const mainPage = new MainPage(page);
         const registerPage = new RegisterPage(page);
-        const articlePage = new ArticlePage(page);
+        const createArticlePage = new CreateArticlePage(page);
+        const editArticlePage = new EditArticlePage(page);
+
 
         await mainPage.gotoRegister();
         await registerPage.registerUser(user);
-        await articlePage.createNew(article);
-        await articlePage.editCreated(articleEdit);
+        await createArticlePage.createNew(article);
+        await editArticlePage.editCreated(articleEdit);
         
-        await expect(articlePage.checkArticle).toContainText(articleEdit.title);
+        await expect(editArticlePage.checkArticle).toContainText(articleEdit.title);
     });
 
     test('Лайк статьи', async ({ page }) => {
@@ -79,12 +82,22 @@ test.describe('Тесты для сайта realworld.qa', () => {
             email: faker.internet.email(),
             password: faker.internet.password(),
         };
+
+        const article = {
+            title: nanoid(10),
+            about: nanoid(15),
+            content: nanoid(30),
+            tag: nanoid(3),
+        };
         
         const mainPage = new MainPage(page);
         const registerPage = new RegisterPage(page);
+        const createArticlePage = new CreateArticlePage(page);
 
         await mainPage.gotoRegister();
         await registerPage.registerUser(user);
+        await createArticlePage.createNew(article);
+        await mainPage.goHome();
         await mainPage.likeArticle();
 
         await expect(mainPage.checkLike).toBeVisible();
@@ -113,14 +126,24 @@ test.describe('Тесты для сайта realworld.qa', () => {
             email: faker.internet.email(),
             password: faker.internet.password(),
             };
+
+        const article = {
+            title: nanoid(10),
+            about: nanoid(15),
+            content: nanoid(30),
+            tag: 'реклама',
+        };
                 
-            const mainPage = new MainPage(page);
-            const registerPage = new RegisterPage(page);
+        const mainPage = new MainPage(page);
+        const registerPage = new RegisterPage(page);
+        const createArticlePage = new CreateArticlePage(page);
         
-            await mainPage.gotoRegister();
-            await registerPage.registerUser(user);
-            await mainPage.gotoSearch();
+        await mainPage.gotoRegister();
+        await registerPage.registerUser(user);
+        await createArticlePage.createNew(article);
+        await mainPage.goHome();
+        await mainPage.gotoSearch();
                 
-            await expect(mainPage.tag).toBeVisible();
+        await expect(mainPage.tag).toBeVisible();
     });
 });
